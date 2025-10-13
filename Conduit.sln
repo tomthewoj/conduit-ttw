@@ -5,26 +5,27 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conduit", "Conduit.Api\Conduit.csproj", "{D9B1D9E3-8595-2EE4-71E7-FE6BFF0E10C0}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "repo", "..\", "{9E4908FA-D014-3B11-A679-4623F1BADEDC}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_52886"
-		Debug.AspNetCompiler.PhysicalPath = "..\..\repo\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_52886\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_52886"
-		Release.AspNetCompiler.PhysicalPath = "..\..\repo\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_52886\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "52886"
-		SlnRelativePath = "..\..\repo\"
-	EndProjectSection
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{DD8DE87F-C363-4E79-B24A-19D9A1E868A4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra.IoC", "Infra.IoC", "{A7594263-3BA9-4091-89C6-BA38A6DB6FEF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra.Data", "Infra.Data", "{378588D4-4625-4541-96FE-61C1FB79E498}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ui.Angular", "Ui.Angular", "{72F8FDEC-B32E-47BE-976F-6C210C974342}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "ConduitAngular", "ConduitAngular\ConduitAngular.esproj", "{E304281B-45B3-3916-774E-6CFBBCF47BD1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{7A4AFB5C-49A3-4085-8168-73BC3AB30219}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conduit.Domain", "Conduit.Domain\Conduit.Domain.csproj", "{904F31AF-5842-4F0A-B091-5207E9ADF5F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conduit.Application", "Conduit.Application\Conduit.Application.csproj", "{6A3A92E2-165E-4ECF-B347-81AFAE21DA1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conduit.Infra.Data", "Conduit.Infra.Data\Conduit.Infra.Data.csproj", "{42CC74D5-CD85-4248-92B8-6879598F20B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conduit.Infra.IoC", "Conduit.Infra.IoC\Conduit.Infra.IoC.csproj", "{76D32F3B-F181-44F2-975D-9079286E8CD7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,13 +37,39 @@ Global
 		{D9B1D9E3-8595-2EE4-71E7-FE6BFF0E10C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9B1D9E3-8595-2EE4-71E7-FE6BFF0E10C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9B1D9E3-8595-2EE4-71E7-FE6BFF0E10C0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E4908FA-D014-3B11-A679-4623F1BADEDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E4908FA-D014-3B11-A679-4623F1BADEDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E4908FA-D014-3B11-A679-4623F1BADEDC}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E4908FA-D014-3B11-A679-4623F1BADEDC}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{E304281B-45B3-3916-774E-6CFBBCF47BD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E304281B-45B3-3916-774E-6CFBBCF47BD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E304281B-45B3-3916-774E-6CFBBCF47BD1}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{E304281B-45B3-3916-774E-6CFBBCF47BD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E304281B-45B3-3916-774E-6CFBBCF47BD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E304281B-45B3-3916-774E-6CFBBCF47BD1}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{904F31AF-5842-4F0A-B091-5207E9ADF5F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{904F31AF-5842-4F0A-B091-5207E9ADF5F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{904F31AF-5842-4F0A-B091-5207E9ADF5F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{904F31AF-5842-4F0A-B091-5207E9ADF5F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A3A92E2-165E-4ECF-B347-81AFAE21DA1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A3A92E2-165E-4ECF-B347-81AFAE21DA1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A3A92E2-165E-4ECF-B347-81AFAE21DA1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A3A92E2-165E-4ECF-B347-81AFAE21DA1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42CC74D5-CD85-4248-92B8-6879598F20B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42CC74D5-CD85-4248-92B8-6879598F20B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42CC74D5-CD85-4248-92B8-6879598F20B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42CC74D5-CD85-4248-92B8-6879598F20B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76D32F3B-F181-44F2-975D-9079286E8CD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76D32F3B-F181-44F2-975D-9079286E8CD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76D32F3B-F181-44F2-975D-9079286E8CD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76D32F3B-F181-44F2-975D-9079286E8CD7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D9B1D9E3-8595-2EE4-71E7-FE6BFF0E10C0} = {7A4AFB5C-49A3-4085-8168-73BC3AB30219}
+		{E304281B-45B3-3916-774E-6CFBBCF47BD1} = {72F8FDEC-B32E-47BE-976F-6C210C974342}
+		{904F31AF-5842-4F0A-B091-5207E9ADF5F9} = {DD8DE87F-C363-4E79-B24A-19D9A1E868A4}
+		{6A3A92E2-165E-4ECF-B347-81AFAE21DA1A} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{42CC74D5-CD85-4248-92B8-6879598F20B3} = {378588D4-4625-4541-96FE-61C1FB79E498}
+		{76D32F3B-F181-44F2-975D-9079286E8CD7} = {A7594263-3BA9-4091-89C6-BA38A6DB6FEF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DDEE2159-B330-4E84-8E2E-3592792C754D}

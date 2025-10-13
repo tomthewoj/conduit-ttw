@@ -10,33 +10,22 @@
 
   <ItemGroup>
     <PackageReference Include="MediatR" Version="13.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.9" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.3">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.9">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="9.0.9" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="9.0.6" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="9.0.6" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.6" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Modules\Shared\" />
-    <Folder Include="Modules\Users\API\Controllers\" />
-    <Folder Include="Modules\Users\API\Endpoints\" />
-    <Folder Include="Modules\Users\API\Extensions\" />
-    <Folder Include="Modules\Users\Application\DTOs\" />
-    <Folder Include="Modules\Users\Application\Interfaces\" />
-    <Folder Include="Modules\Users\Application\Mappings\" />
-    <Folder Include="Modules\Users\Application\Queries\" />
-    <Folder Include="Modules\Users\Application\Validators\" />
-    <Folder Include="Modules\Users\Domain\Events\" />
-    <Folder Include="Modules\Users\Domain\Exceptions\" />
-    <Folder Include="Modules\Users\Domain\ValueObjects\" />
-    <Folder Include="Modules\Users\Infrastructure\Extensions\" />
-    <Folder Include="Modules\Users\Infrastructure\Services\" />
+    <Folder Include="Endpoints\" />
   </ItemGroup>
 
 </Project>

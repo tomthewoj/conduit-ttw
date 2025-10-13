@@ -34,7 +34,6 @@ E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\obj\Debug\net9.0\ref\Conduit
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\Azure.Core.dll
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\Azure.Identity.dll
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\Humanizer.dll
@@ -167,3 +166,8 @@ E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\runtimes\wi
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\Microsoft.Extensions.Identity.Core.dll
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
