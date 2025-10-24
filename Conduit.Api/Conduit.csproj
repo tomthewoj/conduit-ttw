@@ -28,4 +28,9 @@
     <Folder Include="Endpoints\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Conduit.Application\Conduit.Application.csproj" />
+    <ProjectReference Include="..\Conduit.Infra.IoC\Conduit.Infra.IoC.csproj" />
+  </ItemGroup>
+
 </Project>

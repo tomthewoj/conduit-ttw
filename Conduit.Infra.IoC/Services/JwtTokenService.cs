@@ -1,10 +1,11 @@
-﻿using Conduit.Modules.Users.Application.Interfaces;
+﻿using Conduit.Application.Interfaces;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace Conduit.Modules.Users.Infrastructure.Services
+namespace Conduit.Infra.IoC.Services
 {
     public class JwtTokenService : ITokenService
     {

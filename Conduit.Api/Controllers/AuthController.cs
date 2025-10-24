@@ -1,9 +1,12 @@
-﻿using Conduit.Modules.Users.Application.Interfaces;
+﻿using Conduit.Application.Commands.Login;
+using Conduit.Application.DTOs;
+using Conduit.Application.Interfaces;
+using Conduit.DTOs;
 using MediatR;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Conduit.Modules.Users.API.Controllers
+namespace Conduit.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -19,10 +22,11 @@ namespace Conduit.Modules.Users.API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginRequest request)
+        public async Task<IActionResult> Login([FromBody] LoginUserDto request)
         {
-            var token = _tokenService.GenerateToken("12", request.Email); // this isn't an implementation, TBD
-            return Ok(new { Token = token });
+            var command = new LoginUserCommand(request.Username, request.Password);
+            var token = await _mediator.Send(command);
+            return Ok(new { token });
         }
     }
 }

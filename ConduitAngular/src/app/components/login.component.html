@@ -1,0 +1,15 @@
+<h2>Login</h2>
+<input [(ngModel)]="username" placeholder="Username" />
+<input [(ngModel)]="password" type="password" placeholder="Password" />
+<button (click)="onLogin()">Login</button>
+<p *ngIf="errorMessage" style="color:red">{{ errorMessage }}</p>
+<p *ngIf="successMessage" style="color:green">{{ successMessage }}</p>
+
+<hr>
+
+<button (click)="getUsernames()">Get All Usernames</button>
+<button (click)="logout()" style="margin-left: 10px;">Logout</button>
+
+<ul>
+  <li *ngFor="let u of usernames">{{ u }}</li>
+</ul>

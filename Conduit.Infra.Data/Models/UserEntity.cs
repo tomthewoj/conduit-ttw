@@ -1,4 +1,4 @@
-﻿namespace Conduit.Modules.Users.Infrastructure.Persistence.Entities
+﻿namespace Conduit.Infra.Data.Models
 {
     public class UserEntity
     {

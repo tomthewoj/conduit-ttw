@@ -1,8 +1,7 @@
-﻿using Conduit.Modules.Users.Domain.Entities;
-using Conduit.Modules.Users.Infrastructure.Persistence.Entities;
+﻿using Conduit.Infra.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Conduit.Modules.Users.Infrastructure.Persistence
+namespace Conduit.Infra.Data.Context
 {
     public class UserDbContext : DbContext
     {

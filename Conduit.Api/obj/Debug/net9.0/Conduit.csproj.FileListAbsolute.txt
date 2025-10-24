@@ -170,4 +170,17 @@ E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\Microsoft.A
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\Microsoft.Extensions.Identity.Core.dll
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\FluentValidation.dll
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\Conduit.Application.dll
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\Conduit.Domain.Core.dll
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\Conduit.Domain.dll
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\Conduit.Infra.Data.dll
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\Conduit.Infra.IoC.dll
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\Conduit.Application.pdb
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\Conduit.Infra.IoC.pdb
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\Conduit.Domain.pdb
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\Conduit.Domain.Core.pdb
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\Conduit.Infra.Data.pdb
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\FluentValidation.AspNetCore.dll
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\FluentValidation.DependencyInjectionExtensions.dll
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

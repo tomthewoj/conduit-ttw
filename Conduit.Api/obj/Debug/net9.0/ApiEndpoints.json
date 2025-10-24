@@ -1,6 +1,6 @@
 [
   {
-    "ContainingType": "Conduit.Modules.Users.API.Controllers.AuthController",
+    "ContainingType": "Conduit.Controllers.AuthController",
     "Method": "Login",
     "RelativePath": "api/Auth/login",
     "HttpMethod": "POST",
@@ -9,14 +9,14 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "Microsoft.AspNetCore.Identity.Data.LoginRequest",
+        "Type": "Conduit.DTOs.LoginUserDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Conduit.Modules.Users.API.Controllers.RegisterController",
+    "ContainingType": "Conduit.Controllers.RegisterController",
     "Method": "GetUser",
     "RelativePath": "api/Register/{id}",
     "HttpMethod": "GET",
@@ -32,7 +32,33 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Conduit.Modules.Users.API.Controllers.RegisterController",
+    "ContainingType": "Conduit.Controllers.RegisterController",
+    "Method": "GetAllUserNames",
+    "RelativePath": "api/Register/all-usernames",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Conduit.Controllers.RegisterController",
+    "Method": "EmailExists",
+    "RelativePath": "api/Register/emailExists",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Conduit.Controllers.RegisterController",
     "Method": "Register",
     "RelativePath": "api/Register/register",
     "HttpMethod": "POST",
@@ -41,8 +67,24 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "Conduit.Modules.Users.Application.DTOs.RegisterUserDto",
+        "Type": "Conduit.Application.DTOs.RegisterUserDto",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Conduit.Controllers.RegisterController",
+    "Method": "UserExists",
+    "RelativePath": "api/Register/userExists",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userName",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

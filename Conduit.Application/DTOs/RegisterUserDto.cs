@@ -1,4 +1,4 @@
-﻿namespace Conduit.Modules.Users.Application.DTOs
+﻿namespace Conduit.Application.DTOs
 {
     public class RegisterUserDto
     {

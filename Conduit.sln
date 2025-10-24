@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conduit.Infra.Data", "Condu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conduit.Infra.IoC", "Conduit.Infra.IoC\Conduit.Infra.IoC.csproj", "{76D32F3B-F181-44F2-975D-9079286E8CD7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conduit.Domain.Core", "Conduit.Domain.Core\Conduit.Domain.Core.csproj", "{3232B557-1FDC-4CF1-A2DD-1FA3B9EEC6C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{76D32F3B-F181-44F2-975D-9079286E8CD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76D32F3B-F181-44F2-975D-9079286E8CD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76D32F3B-F181-44F2-975D-9079286E8CD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3232B557-1FDC-4CF1-A2DD-1FA3B9EEC6C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3232B557-1FDC-4CF1-A2DD-1FA3B9EEC6C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3232B557-1FDC-4CF1-A2DD-1FA3B9EEC6C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3232B557-1FDC-4CF1-A2DD-1FA3B9EEC6C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,6 +76,7 @@ Global
 		{6A3A92E2-165E-4ECF-B347-81AFAE21DA1A} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{42CC74D5-CD85-4248-92B8-6879598F20B3} = {378588D4-4625-4541-96FE-61C1FB79E498}
 		{76D32F3B-F181-44F2-975D-9079286E8CD7} = {A7594263-3BA9-4091-89C6-BA38A6DB6FEF}
+		{3232B557-1FDC-4CF1-A2DD-1FA3B9EEC6C5} = {DD8DE87F-C363-4E79-B24A-19D9A1E868A4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DDEE2159-B330-4E84-8E2E-3592792C754D}

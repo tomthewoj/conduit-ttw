@@ -1,0 +1,12 @@
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Domain.Core\bin\Debug\net9.0\Conduit.Domain.Core.deps.json
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Domain.Core\bin\Debug\net9.0\Conduit.Domain.Core.dll
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Domain.Core\bin\Debug\net9.0\Conduit.Domain.Core.pdb
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Domain.Core\obj\Debug\net9.0\Conduit.Domain.Core.GeneratedMSBuildEditorConfig.editorconfig
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Domain.Core\obj\Debug\net9.0\Conduit.Domain.Core.AssemblyInfoInputs.cache
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Domain.Core\obj\Debug\net9.0\Conduit.Domain.Core.AssemblyInfo.cs
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Domain.Core\obj\Debug\net9.0\Conduit.Domain.Core.csproj.CoreCompileInputs.cache
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Domain.Core\obj\Debug\net9.0\Conduit.Domain.Core.sourcelink.json
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Domain.Core\obj\Debug\net9.0\Conduit.Domain.Core.dll
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Domain.Core\obj\Debug\net9.0\refint\Conduit.Domain.Core.dll
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Domain.Core\obj\Debug\net9.0\Conduit.Domain.Core.pdb
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Domain.Core\obj\Debug\net9.0\ref\Conduit.Domain.Core.dll

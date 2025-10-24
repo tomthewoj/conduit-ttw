@@ -1,11 +1,20 @@
-﻿using Conduit.Modules.Users.Application.Commands.Register;
-using Conduit.Modules.Users.Domain.Interfaces;
-using Conduit.Modules.Users.Domain.Services;
-using Conduit.Modules.Users.Infrastructure.Persistence;
-using Conduit.Modules.Users.Infrastructure.Persistence.Repositories;
+﻿using Conduit.Application.Commands.Register;
+using Conduit.Application.Interfaces;
+using Conduit.Application.Queries.Register;
+using Conduit.Application.Validation;
+using Conduit.Domain.Entities;
+using Conduit.Domain.Interfaces;
+using Conduit.Infra.Data.Context;
+using Conduit.Infra.Data.Repository;
+using Conduit.Infra.IoC.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using FluentValidation;
+using Conduit.Application.Commands.Login;
 
-namespace Conduit.Modules.Users.Infrastructure
+namespace Conduit.Infra.IoC
 {
     public static class DependencyContainer // consider automapper as well maybe?
     {
@@ -13,8 +22,20 @@ namespace Conduit.Modules.Users.Infrastructure
         {
             services.AddDbContext<UserDbContext>(OptionsBuilderConfigurationExtensions => OptionsBuilderConfigurationExtensions.UseSqlServer(configuration.GetConnectionString("DatabaseConnection")));
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IPasswordHasher, PasswordHasher>();
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(RegisterUserCommandHandler).Assembly)); // is paid now
+            services.AddScoped<ITokenService, JwtTokenService>();
+            services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+            services.AddScoped<IPasswordHasherService, PasswordHasherService>();
+
+            services.AddMediatR(cfg =>
+            {
+                cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
+                cfg.RegisterServicesFromAssemblies(
+                    typeof(RegisterUserCommandHandler).Assembly,
+                    typeof(LoginUserCommandHandler).Assembly,
+                    typeof(CheckEmailExistsHandler).Assembly,
+                    typeof(CheckUserExistsHandler).Assembly);
+            });
+            services.AddValidatorsFromAssemblyContaining<RegisterUserValidator>();
             return services;
         }
     }

@@ -1,29 +1,30 @@
-using Conduit.Modules.Users.Domain.Entities;
-using Conduit.Modules.Users.Domain.Interfaces;
-using Conduit.Modules.Users.Domain.Services;
+using Conduit.Application.Interfaces;
+using Conduit.Domain.Entities;
+using Conduit.Domain.Interfaces;
+using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using MediatR;
-namespace Conduit.Modules.Users.Application.Commands.Register;
-public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, Guid>
+namespace Conduit.Application.Commands.Register;
+public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, Unit>
 {
     private readonly IUserRepository _repo;
-    private readonly IPasswordHasher _hasher;
-    public RegisterUserCommandHandler(IUserRepository repo, IPasswordHasher hasher)
+    private readonly IPasswordHasherService _hasher;
+    public RegisterUserCommandHandler(IUserRepository repo, IPasswordHasherService hasher)
     {
         _repo = repo;
         _hasher = hasher;
     }
 
-    public async Task<Guid> Handle(RegisterUserCommand request, CancellationToken ct = default)
+    public async Task<Unit> Handle(RegisterUserCommand request, CancellationToken ct = default)
         {
             //existing getemailasync if existing regisetered
             var user = new User(request.UserName, request.Email);
-            var hashedPassword = _hasher.Hash(user, request.Password);
+            var hashedPassword = _hasher.HashPassword(user, request.Password);
             user.SetPasswordHash(hashedPassword);
             await _repo.AddAsync(user);
             await _repo.SaveChangesAsync(ct); //maybe add email sender?
-            return user.Id;
-        }
+
+            return Unit.Value;
+        }   
 }

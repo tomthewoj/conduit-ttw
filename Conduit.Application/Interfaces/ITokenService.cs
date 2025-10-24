@@ -1,4 +1,4 @@
-﻿namespace Conduit.Modules.Users.Application.Interfaces
+﻿namespace Conduit.Application.Interfaces
 {
     public interface ITokenService
     {
