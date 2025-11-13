@@ -1,7 +1,7 @@
 ﻿using Conduit.Application.Commands.Register;
-using Conduit.Application.DTOs;
 using Conduit.Application.Queries.ActiveUsers;
 using Conduit.Application.Queries.Register;
+using Conduit.DTOs;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

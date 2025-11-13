@@ -1,5 +1,4 @@
 ﻿using Conduit.Application.Commands.Login;
-using Conduit.Application.DTOs;
 using Conduit.Application.Interfaces;
 using Conduit.DTOs;
 using MediatR;

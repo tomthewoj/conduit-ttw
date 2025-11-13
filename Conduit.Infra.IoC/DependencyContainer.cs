@@ -20,8 +20,12 @@ namespace Conduit.Infra.IoC
     {
         public static IServiceCollection AddUsersModule(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<UserDbContext>(OptionsBuilderConfigurationExtensions => OptionsBuilderConfigurationExtensions.UseSqlServer(configuration.GetConnectionString("DatabaseConnection")));
+            services.AddDbContext<ConduitDbContext>(options =>
+            options.UseSqlServer(
+                configuration.GetConnectionString("DatabaseConnection"),
+                b => b.MigrationsAssembly("Conduit.Infra.Data")));
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IFollowerRepository, UserFollowRepository>();
             services.AddScoped<ITokenService, JwtTokenService>();
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             services.AddScoped<IPasswordHasherService, PasswordHasherService>();

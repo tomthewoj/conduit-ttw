@@ -67,7 +67,7 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "Conduit.Application.DTOs.RegisterUserDto",
+        "Type": "Conduit.DTOs.RegisterUserDto",
         "IsRequired": true
       }
     ],
@@ -85,6 +85,22 @@
         "Name": "userName",
         "Type": "System.String",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Conduit.Controllers.FollowerController",
+    "Method": "GetFollowers",
+    "RelativePath": "followers",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Conduit.DTOs.FollowersDto",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

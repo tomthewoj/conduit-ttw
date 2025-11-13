@@ -18,3 +18,5 @@ E:\MyWork\Programming\2025\repo\Conduit\Conduit.Infra.Data\obj\Debug\net9.0\Cond
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Infra.Data\obj\Debug\net9.0\refint\Conduit.Infra.Data.dll
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Infra.Data\obj\Debug\net9.0\Conduit.Infra.Data.pdb
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Infra.Data\obj\Debug\net9.0\ref\Conduit.Infra.Data.dll
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Infra.Data\bin\Debug\net9.0\Conduit.Infra.Data.runtimeconfig.json
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Infra.Data\obj\Debug\net9.0\Conduit.Infra.Data.genruntimeconfig.cache

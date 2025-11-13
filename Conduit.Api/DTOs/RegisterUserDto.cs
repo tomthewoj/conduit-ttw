@@ -1,6 +1,8 @@
-﻿namespace Conduit.Application.DTOs
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace Conduit.DTOs
 {
-    public class RegisterUserDto
+    public class RegisterUserDto : Controller
     {
         public string Username { get; set; } = "";
         public string Email { get; set; } = "";

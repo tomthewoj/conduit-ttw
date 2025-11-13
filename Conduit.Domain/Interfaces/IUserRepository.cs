@@ -9,4 +9,6 @@ public interface IUserRepository
     Task<bool> ExistsByEmailAsync(string email);
     Task<User?> GetByUserNameAsync(string username, CancellationToken ct);
     Task<IEnumerable<User>> GetAllActiveUsers();
+    Task<User> GetUserById(Guid id);
+    Task<IEnumerable<User>> GetUsersById(IEnumerable<Guid> ids);
 }

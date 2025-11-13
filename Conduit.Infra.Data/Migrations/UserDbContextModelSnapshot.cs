@@ -10,19 +10,19 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Conduit.Migrations
 {
-    [DbContext(typeof(UserDbContext))]
+    [DbContext(typeof(ConduitDbContext))]
     partial class UserDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.9")
+                .HasAnnotation("ProductVersion", "9.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Conduit.Modules.Users.Infrastructure.Persistence.Entities.UserEntity", b =>
+            modelBuilder.Entity("Conduit.Infra.Data.Models.UserEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -43,6 +43,19 @@ namespace Conduit.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Conduit.Infra.Data.Models.UserFollowEntity", b =>
+                {
+                    b.Property<Guid>("FollowerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("FolloweeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("FollowerId", "FolloweeId");
+
+                    b.ToTable("UserFollow");
                 });
 #pragma warning restore 612, 618
         }

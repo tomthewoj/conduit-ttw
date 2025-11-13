@@ -8,8 +8,8 @@ namespace Conduit.Infra.Data.Repository
 {
     public class UserRepository : IUserRepository
     {
-        private readonly UserDbContext _context;
-        public UserRepository(UserDbContext context) => _context = context;
+        private readonly ConduitDbContext _context;
+        public UserRepository(ConduitDbContext context) => _context = context;
         public async Task SaveChangesAsync(CancellationToken ct = default)
         {
             await _context.SaveChangesAsync(ct);
@@ -28,7 +28,7 @@ namespace Conduit.Infra.Data.Repository
             UserName = user.UserName,
             Email = user.Email,
             PasswordHash = user.PasswordHash
-        }; // convenient
+        }; // convenient, should maybe do reverse?
 
         public async Task<bool> ExistsByUsernameAsync(string username) => await _context.Users.AnyAsync(u => u.UserName == username);
 
@@ -44,7 +44,17 @@ namespace Conduit.Infra.Data.Repository
         public async Task<IEnumerable<User>> GetAllActiveUsers()
         {
             var entities = await _context.Users.ToListAsync();
-            return entities.Select(e => new User(e.Id, e.UserName, e.Email, e.PasswordHash));
+            return entities.Select(e => new User(e.Id, e.UserName)); //create a mapper
+        }
+        public async Task<User> GetUserById(Guid id)
+        {
+            var entity = await _context.Users.Where(ui => ui.Id == id).FirstAsync();
+            return new User(entity.Id, entity.UserName);
+        }
+        public async Task<IEnumerable<User>> GetUsersById(IEnumerable<Guid> userId) //collection?enumerable?which one's better?
+        {
+            var entities = await _context.Users.Where(ui => userId.Contains(ui.Id)).ToListAsync();
+            return entities.Select(u => new User(u.Id, u.UserName));
         }
     }
 }

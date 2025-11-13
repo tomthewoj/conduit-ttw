@@ -36,6 +36,9 @@
               "E:\\MyWork\\Programming\\2025\\repo\\Conduit\\Conduit.Application\\Conduit.Application.csproj": {
                 "projectPath": "E:\\MyWork\\Programming\\2025\\repo\\Conduit\\Conduit.Application\\Conduit.Application.csproj"
               },
+              "E:\\MyWork\\Programming\\2025\\repo\\Conduit\\Conduit.Infra.Data\\Conduit.Infra.Data.csproj": {
+                "projectPath": "E:\\MyWork\\Programming\\2025\\repo\\Conduit\\Conduit.Infra.Data\\Conduit.Infra.Data.csproj"
+              },
               "E:\\MyWork\\Programming\\2025\\repo\\Conduit\\Conduit.Infra.IoC\\Conduit.Infra.IoC.csproj": {
                 "projectPath": "E:\\MyWork\\Programming\\2025\\repo\\Conduit\\Conduit.Infra.IoC\\Conduit.Infra.IoC.csproj"
               }
@@ -72,17 +75,17 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[9.0.9, )"
+              "version": "[9.0.11, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[9.0.9, )"
+              "version": "[9.0.11, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.9, )"
+              "version": "[9.0.11, )"
             },
             "Microsoft.Extensions.Identity.Core": {
               "target": "Package",
@@ -396,9 +399,15 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.11, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[9.0.9, )"
+              "version": "[9.0.11, )"
             }
           },
           "imports": [
