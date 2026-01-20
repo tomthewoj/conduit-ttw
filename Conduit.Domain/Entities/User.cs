@@ -1,40 +1,65 @@
+using Conduit.Domain.ValueObjects;
 using System;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace Conduit.Domain.Entities;
 public class User
 {
-    public Guid Id { get; private set; } = Guid.NewGuid();
+    public Guid Id { get; private set; }
     public string UserName { get; private set; }
-    public string? PasswordHash { get; private set; } // nullable probably isn't the best approach
     public string Email { get; private set; }
     public DateTime CreatedDate { get; private set; } = DateTime.Now;
-    public ICollection<UserFollow> Following { get; private set; } = new List<UserFollow>();
     public UserProfile Profile { get; private set; }
-    public ICollection<ArticleFollow> FollowedArticels {  get; private set; }
-    public ICollection<Comment> Comments { get; private set; }
-    public ICollection<Article> Articles { get; private set; }
-    public User(string userName, string email)
+    public void UpdateUserName(string userName)
     {
         UserName = userName;
+    }
+    public void UpdateEmail(string email)
+    {
         Email = email;
     }
-    public User(Guid id, string userName)
-    {
-        Id = id;
-        UserName = userName;
-    }
-    public User(Guid id, string userName, string email, string passwordHash) //user creation
+    private User(Guid id, string userName, string email, UserProfile profile) //user creation
     {
         Id = id;
         UserName = userName;
         Email = email;
-        PasswordHash = passwordHash;
+        Profile = profile;
+
     }
-    public void SetPasswordHash(string password)
+    private User(Guid id, string userName, string email ) //user creation
     {
-        PasswordHash = password;
+        Id = id;
+        UserName = userName;
+        Email = email;
     }
-    public void Follow(User userToFollow)
+    private User(Guid id, string userName, string email, UserProfile? profile, DateTime createdDate) //user creation
     {
-        Following.Add(new UserFollow(this.Id, userToFollow.Id));
+        Id = id;
+        UserName = userName;
+        Email = email;
+        if(profile != null) Profile = profile;
+        CreatedDate = createdDate;
+    }
+    public static User CreateUser(string username, string email)
+    {
+        var id = Guid.NewGuid();
+        var profile = new UserProfile(id, "", "");
+        return new User(id, username, email, profile);
+    }
+    public static User LoadUser(
+        Guid id,
+        string username,
+        string email)
+    {
+        return new User(id, username, email);
+    }
+    public static User LoadUser(
+    Guid id,
+    string userName,
+    string email,
+    DateTime createdDate,
+    UserProfile? profile)
+    {
+        var user = new User(id, userName, email, profile, createdDate);
+        return user;
     }
 }

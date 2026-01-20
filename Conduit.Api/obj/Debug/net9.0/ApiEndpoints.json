@@ -1,31 +1,263 @@
 [
   {
-    "ContainingType": "Conduit.Controllers.AuthController",
-    "Method": "Login",
-    "RelativePath": "api/Auth/login",
+    "ContainingType": "Conduit.Controllers.ArticleController",
+    "Method": "AddComment",
+    "RelativePath": "api/article/{slug}/comments",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "request",
-        "Type": "Conduit.DTOs.LoginUserDto",
+        "Name": "commentBody",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "slug",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Conduit.Controllers.RegisterController",
-    "Method": "GetUser",
-    "RelativePath": "api/Register/{id}",
+    "ContainingType": "Conduit.Controllers.ArticleController",
+    "Method": "GetComments",
+    "RelativePath": "api/article/{slug}/comments",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "slug",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Conduit.Controllers.ArticleController",
+    "Method": "DeleteComment",
+    "RelativePath": "api/article/{slug}/comments",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "slug",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "commentBody",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Conduit.Controllers.ArticleController",
+    "Method": "CreateArticle",
+    "RelativePath": "api/articles",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Conduit.Application.DTOs.CreateArticleDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Conduit.Controllers.ArticleController",
+    "Method": "ListArticles",
+    "RelativePath": "api/articles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tag",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "author",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "favorited",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "limit",
         "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "offset",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Conduit.Controllers.ArticleController",
+    "Method": "UpdateArticle",
+    "RelativePath": "api/articles/{slug}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "req",
+        "Type": "Conduit.Application.DTOs.Requests.UpdateArticleRequest",
+        "IsRequired": true
+      },
+      {
+        "Name": "slug",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Conduit.Controllers.ArticleController",
+    "Method": "GetArticle",
+    "RelativePath": "api/articles/{slug}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "slug",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Conduit.Controllers.ArticleController",
+    "Method": "DeleteArticle",
+    "RelativePath": "api/articles/{slug}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "slug",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Conduit.Controllers.ArticleController",
+    "Method": "FavoriteArticle",
+    "RelativePath": "api/articles/{slug}/favorite",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "slug",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Conduit.Controllers.ArticleController",
+    "Method": "UnfavoriteArticle",
+    "RelativePath": "api/articles/{slug}/favorite",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "slug",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Conduit.Controllers.ArticleController",
+    "Method": "Feed",
+    "RelativePath": "api/articles/feed",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "limit",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "offset",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Conduit.Controllers.UsersController",
+    "Method": "GetProfile",
+    "RelativePath": "api/profile/{username}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "username",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Conduit.Controllers.UsersController",
+    "Method": "FollowUser",
+    "RelativePath": "api/profile/{username}/follow",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "username",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Conduit.Controllers.UsersController",
+    "Method": "UnfollowUser",
+    "RelativePath": "api/profile/{username}/follow",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "username",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -33,18 +265,8 @@
   },
   {
     "ContainingType": "Conduit.Controllers.RegisterController",
-    "Method": "GetAllUserNames",
-    "RelativePath": "api/Register/all-usernames",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Conduit.Controllers.RegisterController",
     "Method": "EmailExists",
-    "RelativePath": "api/Register/emailExists",
+    "RelativePath": "api/side/emailExists",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -59,24 +281,8 @@
   },
   {
     "ContainingType": "Conduit.Controllers.RegisterController",
-    "Method": "Register",
-    "RelativePath": "api/Register/register",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dto",
-        "Type": "Conduit.DTOs.RegisterUserDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Conduit.Controllers.RegisterController",
     "Method": "UserExists",
-    "RelativePath": "api/Register/userExists",
+    "RelativePath": "api/side/userExists",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -90,16 +296,58 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Conduit.Controllers.FollowerController",
-    "Method": "GetFollowers",
-    "RelativePath": "followers",
+    "ContainingType": "Conduit.Controllers.UsersController",
+    "Method": "UpdateUser",
+    "RelativePath": "api/user",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Conduit.Application.DTOs.Responses.UserResponse",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Conduit.Controllers.UsersController",
+    "Method": "GetCurrentUser",
+    "RelativePath": "api/user",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Conduit.Controllers.UsersController",
+    "Method": "Registration",
+    "RelativePath": "api/users",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Conduit.Application.DTOs.RegisterUserDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Conduit.Controllers.UsersController",
+    "Method": "Authentication",
+    "RelativePath": "api/users/login",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "request",
-        "Type": "Conduit.DTOs.FollowersDto",
+        "Type": "Conduit.Application.DTOs.LoginUserDto",
         "IsRequired": true
       }
     ],

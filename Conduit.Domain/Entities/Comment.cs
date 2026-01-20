@@ -14,5 +14,14 @@ namespace Conduit.Domain.Entities
         public string Body { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+        public Comment(string body, Guid authorId, Guid articleId, DateTime createdAt, DateTime updatedAt)
+        {
+            Id = Guid.NewGuid();
+            Body = body;
+            AuthorId = authorId;
+            ArticleId = articleId;
+            CreatedAt = createdAt;
+            UpdatedAt = updatedAt;
+        }
     }
 }

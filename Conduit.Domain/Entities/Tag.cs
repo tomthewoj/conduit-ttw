@@ -10,5 +10,10 @@ namespace Conduit.Domain.Entities
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public Tag(Guid id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
     }
 }

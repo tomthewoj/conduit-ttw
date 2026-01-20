@@ -1,6 +1,4 @@
-﻿using Conduit.Application.Commands.Register;
-using Conduit.Application.Interfaces;
-using Conduit.Application.Queries.Register;
+﻿using Conduit.Application.Interfaces;
 using Conduit.Application.Validation;
 using Conduit.Domain.Entities;
 using Conduit.Domain.Interfaces;
@@ -12,7 +10,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using FluentValidation;
-using Conduit.Application.Commands.Login;
+using Conduit.Application.Queries.Register;
+using Conduit.Application.Commands.Users.Register;
+using Conduit.Application.Commands.Users.Login;
 
 namespace Conduit.Infra.IoC
 {
@@ -25,7 +25,11 @@ namespace Conduit.Infra.IoC
                 configuration.GetConnectionString("DatabaseConnection"),
                 b => b.MigrationsAssembly("Conduit.Infra.Data")));
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IFollowerRepository, UserFollowRepository>();
+            services.AddScoped<IArticleRepository, ArticleRepository>();
+            services.AddScoped<IFavoriteRepository, FavoriteRepository>();
+            services.AddScoped<IFollowingRepository, FollowingRepository>();
+            services.AddScoped<ICommentRepository, CommentRepository>();
+            services.AddScoped<ITagRepository, TagRepository>();
             services.AddScoped<ITokenService, JwtTokenService>();
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             services.AddScoped<IPasswordHasherService, PasswordHasherService>();

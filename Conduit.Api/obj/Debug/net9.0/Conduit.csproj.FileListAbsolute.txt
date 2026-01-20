@@ -185,4 +185,6 @@ E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\FluentValid
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\FluentValidation.DependencyInjectionExtensions.dll
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\System.Formats.Asn1.dll
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\System.Text.Json.dll
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\AutoMapper.dll
+E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\bin\Debug\net9.0\System.Diagnostics.DiagnosticSource.dll
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Api\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
