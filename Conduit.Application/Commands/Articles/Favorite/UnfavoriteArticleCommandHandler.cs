@@ -10,25 +10,20 @@ namespace Conduit.Application.Commands.Articles.Favorite
 {
     public class UnfavoriteArticleCommandHandler : IRequestHandler<UnfavoriteArticleCommand, Unit>
     {
-        public UnfavoriteArticleCommandHandler(IArticleRepository arepo, IUserRepository urepo)
+        public UnfavoriteArticleCommandHandler(IArticleRepository articleRepository, IFavoriteRepository favoriteRepository)
         {
-            _urepo = urepo;
-            _arepo = arepo;
+            _articleRepository = articleRepository;
+            _favoriteRepository = favoriteRepository;
         }
-        private IArticleRepository _arepo;
-        private IUserRepository _urepo;
+        private IArticleRepository _articleRepository;
+        private IFavoriteRepository _favoriteRepository;
 
         public async Task<Unit> Handle(UnfavoriteArticleCommand request, CancellationToken cancellationToken)
         {
-            /*
-            var article = await _arepo.GetArticleBySlug(request.articleSlug);
-            var user = await _urepo.GetUserById((Guid)request.currentUserId);
-            if (article != null)
-            {
-                article.RemoveFavorite(user);
-                await _arepo.UpdateArticle(article);
-            } //or throw exception
-            */
+            var article = await _articleRepository.GetArticleBySlug(request.slug);
+            if (article == null)
+                throw new Exception("Article not found");
+            await _favoriteRepository.RemoveFavorite(article.Id, request.currentUserId);
             return Unit.Value;
         }
     }

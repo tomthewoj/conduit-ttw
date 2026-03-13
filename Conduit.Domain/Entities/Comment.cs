@@ -14,9 +14,12 @@ namespace Conduit.Domain.Entities
         public string Body { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-        public Comment(string body, Guid authorId, Guid articleId, DateTime createdAt, DateTime updatedAt)
+        public Comment(Guid? id,string body, Guid authorId, Guid articleId, DateTime createdAt, DateTime updatedAt)
         {
-            Id = Guid.NewGuid();
+            if (id == null) 
+                Id = Guid.NewGuid();
+            else
+                Id = (Guid)id;
             Body = body;
             AuthorId = authorId;
             ArticleId = articleId;

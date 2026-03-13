@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 
 namespace Conduit.Application.Commands.Articles.Favorite
 {
-    public record UnfavoriteArticleCommand(string articleSlug, Guid? currentUserId) : IRequest<Unit>;
+    public record UnfavoriteArticleCommand(Guid currentUserId, string slug) : IRequest<Unit>;
 }

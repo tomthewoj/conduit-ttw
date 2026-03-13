@@ -25,8 +25,12 @@ namespace Conduit.Infra.Data.Repository
             var favorite = new ArticleFavoriteEntity();
             favorite.AuthorId = userId;
             favorite.ArticleId = articleId;
-            _context.ArticleFavorite.Add(favorite);
-            await SaveChangesAsync();
+            var favoriteExists = await _context.ArticleFavorite.AnyAsync(af => af.ArticleId == articleId && af.AuthorId == userId);
+            if (!favoriteExists)
+            {
+                await _context.ArticleFavorite.AddAsync(favorite);
+                await SaveChangesAsync();
+            }
         }
 
         public async Task<int> GetFavoritesCount(Guid articleId)
@@ -63,7 +67,12 @@ namespace Conduit.Infra.Data.Repository
 
         public async Task RemoveFavorite(Guid articleId, Guid userId)
         {
-            throw new NotImplementedException();
+            var favoriteExists = await _context.ArticleFavorite.FirstOrDefaultAsync(af => af.ArticleId == articleId && af.AuthorId == userId);
+            if (favoriteExists != null)
+            {
+                _context.ArticleFavorite.Remove(favoriteExists);
+                await SaveChangesAsync();
+            }
         }
     }
 }

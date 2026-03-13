@@ -5,6 +5,6 @@
         string title,
         string description,
         string body,
-        ICollection<string> tags
+        IReadOnlyCollection<string> tags
     );
 }

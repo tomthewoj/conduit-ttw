@@ -30,7 +30,7 @@ namespace Conduit.Application.Queries.Articles
 
         public async Task<ListArticleItemsResponse> Handle(FeedArticlesQuery request, CancellationToken cancellationToken)
         {
-            var articles = await _articleRepo.FeedArticles((Guid)request.currentUserId,request.limit,request.offset);
+            var (articles,totalcount) = await _articleRepo.FeedArticles((Guid)request.currentUserId, request.limit, request.offset);
 
             var articleIds = articles.Select(a => a.Id).ToList();
             var authorIds = articles.Select(a => a.AuthorId).Distinct().ToList();
@@ -55,7 +55,7 @@ namespace Conduit.Application.Queries.Articles
                     Slug: article.Slug,
                     Title: article.Title,
                     Description: article.Description,
-                    TagList: new TagResponse(tags.GetValueOrDefault(article.Id)),
+                    TagList: tags.GetValueOrDefault(article.Id),
                     CreatedAt: article.CreatedAt,
                     UpdatedAt: article.UpdatedAt,
                     Favorited: favoritedByUser.GetValueOrDefault(article.Id),
@@ -65,7 +65,7 @@ namespace Conduit.Application.Queries.Articles
                 );
             }
 
-            return new ListArticleItemsResponse(resultList, resultList.Count);
+            return new ListArticleItemsResponse(resultList, totalcount);
         }
     }
 }

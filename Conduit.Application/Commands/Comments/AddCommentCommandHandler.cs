@@ -23,7 +23,7 @@ namespace Conduit.Application.Commands.Comments
         {
             var article = await _articleRepo.GetArticleBySlug(request.slug);
             if (article == null) throw new Exception("Article doesn't exist");
-            await _repo.AddComment(new Comment(request.commentBody, request.currentUserId, article.Id,DateTime.UtcNow,DateTime.UtcNow));
+            await _repo.AddComment(new Comment(null,request.commentBody, request.currentUserId, article.Id,DateTime.UtcNow,DateTime.UtcNow));
             return Unit.Value;
         }
     }

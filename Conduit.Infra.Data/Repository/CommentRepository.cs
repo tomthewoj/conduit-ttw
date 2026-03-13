@@ -26,19 +26,37 @@ namespace Conduit.Infra.Data.Repository
             await SaveChangesAsync();
         }
 
-        public Task DeleteComment(Guid commentId)
+        public async Task DeleteComment(Guid commentId)
         {
-            throw new NotImplementedException();
+            var comment = await _context.Comments.FirstOrDefaultAsync(c => c.Id == commentId);
+            if(comment == null) return;
+            _context.Comments.Remove(comment);
+            await SaveChangesAsync();
         }
 
         public async Task<IReadOnlyCollection<Comment>> GetAllComments(Guid articleId, int limit, int offset)
         {
-            return await _context.Comments.Where(c => c.ArticleId == articleId).Select(c => new Comment(c.Body,c.AuthorId,c.ArticleId, c.CreatedAt, c.UpdatedAt)).Skip(offset).Take(limit).ToListAsync();
+            return await _context.Comments.Where(c => c.ArticleId == articleId).OrderByDescending(d => d.CreatedAt).Select(c => new Comment(c.Id,c.Body,c.AuthorId,c.ArticleId, c.CreatedAt, c.UpdatedAt)).Skip(offset).Take(limit).ToListAsync();
         }
 
         public Task UpdateComment(Comment comment)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<Comment?> GetCommentById(Guid commentId)
+        {
+            var entity = await _context.Comments.FirstOrDefaultAsync(c => c.Id == commentId);
+            if (entity == null) return null;
+
+            return new Comment(
+                entity.Id,
+                entity.Body,
+                entity.AuthorId,
+                entity.ArticleId,
+                entity.CreatedAt,
+                entity.UpdatedAt
+            );
         }
     }
 }

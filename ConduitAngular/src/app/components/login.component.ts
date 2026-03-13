@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { GetUserService } from '../services/getuser.service';
 import { FormsModule } from '@angular/forms';
-import { NgIf, NgFor } from '@angular/common';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, NgIf, NgFor],
+  imports: [FormsModule, CommonModule],
   templateUrl: './login.component.html'
 })
 export class LoginComponent {
@@ -14,43 +15,30 @@ export class LoginComponent {
   password = '';
   errorMessage = '';
   successMessage = '';
-  usernames: string[] = [];
+  isLoggedIn = false;
 
-  constructor(private auth: AuthService, private userService: GetUserService) { }
+  constructor(private auth: AuthService, private router: Router) { }
 
+  ngOnInit(): void {
+    this.auth.isLoggedIn$.subscribe(state => this.isLoggedIn = state);
+    this.username = this.auth.getUsername() ?? '';
+  }
   onLogin() {
     this.auth.login(this.username, this.password).subscribe({
-      next: (response) => {
-        localStorage.setItem('token', response.token);
+      next: () => {
         this.successMessage = "Logged in successfully";
-        console.log('Logged in successfully');
+        this.errorMessage = '';
       },
-      error: (err) => {
+      error: () => {
         this.errorMessage = 'Invalid username or password';
-        console.error(err);
+        this.successMessage = '';
       }
     });
   }
 
-  getUsernames() {
-    this.userService.getAllUsernames().subscribe({
-      next: (response) => {
-        this.usernames = response;
-      },
-      error: (err) => {
-        console.error('Failed to fetch usernames', err);
-        this.errorMessage = 'Failed to fetch usernames. Make sure you are logged in.';
-      }
-    });
-
-  }
-  logout() {
-    if (localStorage.getItem('token')) {
-    localStorage.removeItem('token');
+  onLogout() {
+    this.auth.logout();
     this.successMessage = "Logged out successfully";
-    console.log('Logged out successfully');
-    }
-    this.usernames = [];
     this.errorMessage = '';
   }
 }

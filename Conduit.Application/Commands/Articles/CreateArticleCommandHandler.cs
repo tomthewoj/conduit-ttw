@@ -18,9 +18,9 @@ namespace Conduit.Application.Commands.Articles
         private ITagRepository _tagRepo;
         public async Task<Unit> Handle(CreateArticleCommand request, CancellationToken cancellationToken)
         {
-            var tags = await _tagRepo.AddAndReturnTags(request.Tags);
+
             var article = Article.CreateArticle(null, null, request.Title, request.Description, request.Body, (Guid)request.AuthorId);
-            await _articleRepo.CreateArticle(article);
+            await _articleRepo.CreateArticle(article, request.Tags);
             return Unit.Value;
         }
     }

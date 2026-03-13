@@ -5,7 +5,7 @@
         string Slug,
         string Title,
         string Description,
-        TagResponse TagList,
+        IReadOnlyCollection<string> TagList,
         DateTime CreatedAt,
         DateTime UpdatedAt,
         bool Favorited,

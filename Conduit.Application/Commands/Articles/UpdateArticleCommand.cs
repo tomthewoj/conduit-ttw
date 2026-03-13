@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Conduit.Application.Commands.Articles
 {
-    public record UpdateArticleCommand(string slug, Guid? AuthorId,
-    string? Title,
-    string? Description,
-    string? Body) : IRequest<Unit>;
+    public record UpdateArticleCommand(Guid currentUserId,string slug,
+    string? Title = null,
+    string? Description = null,
+    string? Body = null) : IRequest<Unit>;
 }

@@ -1,0 +1,30 @@
+<h2 class="mb-4">{{title}}</h2>
+<div class="filter-box" *ngIf="mode === 'article'">
+
+  <label>Filter by:</label>
+  <select [(ngModel)]="selectedFilter">
+    <option value="tag">Tag</option>
+    <option value="author">Author</option>
+    <option value="favorited">Favorited By</option>
+  </select>
+
+  <input type="text"
+         [(ngModel)]="filterValue"
+         placeholder="Enter value">
+
+  <button (click)="applyFilter()">Search</button>
+
+</div>
+<!-- Pagination -->
+<app-articleList [articles]="articles"
+                 [articleCount]="articleCount"
+                 (limitChange)="limitChange($event)"
+                 (pageChange)="pageChange($event)">
+</app-articleList>
+
+<div class="tags-list" *ngIf="mode === 'article'">
+  Popular tags
+  <span *ngFor="let tag of tagList">
+    <a [routerLink]="['/tags', tag.name]">{{ tag.name }}</a>&nbsp;
+  </span>
+</div>

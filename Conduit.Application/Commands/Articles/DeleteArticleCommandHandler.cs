@@ -11,17 +11,18 @@ namespace Conduit.Application.Commands.Articles
 {
     public class DeleteArticleCommandHandler : IRequestHandler<DeleteArticleCommand, Unit>
     {
-        public DeleteArticleCommandHandler(IArticleRepository articleRepo) => _articleWriteRepo = articleRepo;
-        private IArticleRepository _articleWriteRepo;
+        public DeleteArticleCommandHandler(IArticleRepository articleRepo) => _articleRepo = articleRepo;
+        private readonly IArticleRepository _articleRepo;
         public async Task<Unit> Handle(DeleteArticleCommand request, CancellationToken cancellationToken)
         {
-            /*
-            var article = await _articleWriteRepo.GetArticleBySlug(request.slug);
-            if (article.AuthorId == request.currentUserId) 
-                await _articleWriteRepo.DeleteArticle(article);
-            else
-                throw new Exception("Unauthorized deletion");
-            */
+            var article = await _articleRepo.GetArticleBySlug(request.slug);
+
+            if (article == null)
+                throw new Exception("Article not found");
+            if (article.AuthorId != request.currentUserId)
+                throw new UnauthorizedAccessException("Cannot delete another user's article");
+
+            await _articleRepo.DeleteArticle(article.Id);
             return Unit.Value;
         }
     }

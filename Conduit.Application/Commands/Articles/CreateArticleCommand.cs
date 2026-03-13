@@ -13,5 +13,5 @@ namespace Conduit.Application.Commands.Articles
     string Title,
     string Description,
     string Body,
-    ICollection<string> Tags) : IRequest<Unit>;
+    IReadOnlyCollection<string> Tags) : IRequest<Unit>;
 }

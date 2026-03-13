@@ -31,7 +31,7 @@ namespace Conduit.Application.Queries.Articles
         private IFollowingRepository _followRepo;
         public async Task<ListArticleItemsResponse> Handle(ListArticlesQuery request, CancellationToken cancellationToken)
         {
-            var articles = await _articleRepo.ListArticles(request.tag, request.author, request.favorited, request.limit, request.offset);
+            var (articles, totalcount) = await _articleRepo.ListArticles(request.tag, request.author, request.favorited, request.limit, request.offset);
     
             var articleIds = articles.Select(a => a.Id).ToList();
             var authorIds = articles.Select(a => a.AuthorId).Distinct().ToList();
@@ -39,7 +39,7 @@ namespace Conduit.Application.Queries.Articles
             var tags = await _tagRepo.GetTagsForArticles(articleIds);
             var favoritesCount = await _favoriteRepo.GetFavoritesCountForArticles(articleIds);
 
-            IReadOnlyDictionary<Guid, bool> favoritedByUser = request.currentUserId != null // this hurts
+            IReadOnlyDictionary<Guid, bool> favoritedByUser = request.currentUserId != null
                 ? await _favoriteRepo.IsFavoritedByUserForArticles(articleIds, (Guid)request.currentUserId)
                 : new Dictionary<Guid, bool>();
 
@@ -64,7 +64,7 @@ namespace Conduit.Application.Queries.Articles
                     Slug: article.Slug,
                     Title: article.Title,
                     Description: article.Description,
-                    TagList: new TagResponse(tags.GetValueOrDefault(article.Id)),
+                    TagList: tags.GetValueOrDefault(article.Id),
                     CreatedAt: article.CreatedAt,
                     UpdatedAt: article.UpdatedAt,
                     Favorited: favoritedByUser.GetValueOrDefault(article.Id),
@@ -74,7 +74,7 @@ namespace Conduit.Application.Queries.Articles
                 );
             }
 
-            return new ListArticleItemsResponse(resultList, resultList.Count);
+            return new ListArticleItemsResponse(resultList, totalcount);
         }
     }
 }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Conduit.Domain.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0c68b3446f5453f8d6bb2b8cb90dcbc2a4879b15")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+06ffc6b3dd0eacadff850e1cd3d4a2a71535c95e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Conduit.Domain.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Conduit.Domain.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

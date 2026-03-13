@@ -1,0 +1,70 @@
+<div *ngIf="article" class="article-container mx-auto my-4 p-4">
+
+  <!-- Article Title -->
+  <h1 class="article-title mb-3">
+    {{ article.title }}
+  </h1>
+
+  <!-- Article Description / Subtitle -->
+  <p class="article-subtitle text-muted mb-4">
+    {{ article.description }}
+  </p>
+
+  <!-- Article Body -->
+  <div class="article-body">
+    <p *ngFor="let paragraph of article.body.split('\n')">
+      {{ paragraph }}
+    </p>
+  </div>
+
+  <div class="article-author">
+
+    Author: <a [routerLink]="['/profile', article.author.username]" class="article-author">
+      {{article.author.username}}
+    </a>
+  </div>
+
+  <div *ngIf="isAuthor" class="article-favorited">
+    <button (click)="toggleFavorite()"
+            [class.btn-primary]="!article.favorited"
+            [class.btn-secondary]="article.favorited">
+
+      {{ article.favorited ? 'Unfavorite' : 'Favorite' }}
+    </button>
+  </div>
+  <div class="article-tags">
+    Tags:
+    <span *ngFor="let tag of article?.tagList">
+      <a [routerLink]="['/tags', tag]">{{ tag }}</a>&nbsp;
+    </span>
+
+  </div>
+  <button class="btn btn-primary w-100 mb-3" *ngIf="isAuthor" (click)="editArticle()">Edit</button>
+  <button class="btn btn-secondary w-100 mb-3" *ngIf="isAuthor" (click)="deleteArticle()">Delete</button>
+
+  <div class="comment-list">
+    <h3>Comments</h3>
+    <div class="row row-cols-1 row-cols-md-1 g-4">
+      <div *ngFor="let comment of comments" class="col">
+
+        <p class="card-author text-muted">
+          <img [src]="comment.author.image" alt="No image" width="32" height="32">
+          <a [routerLink]="['/profile', comment.author.username]">{{ comment.author.username }}</a>&nbsp;
+          <button class="btn btn-secondary" *ngIf="comment.author.username === currentUser" (click)="deleteComment(comment.id)">Delete comment</button>
+        </p>
+
+        <p class="card-text text-muted">
+          {{ comment.body }} 
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="form-group mb-3" *ngIf="isLoggedIn">
+    <input id="newComment"
+           class="form-control"
+           [(ngModel)]="commentBody"
+           placeholder="Write your comment"
+           type="text" />  <button class="btn btn-primary w-100 mb-3" (click)="submitComment()">Post</button>
+  </div>
+
+</div>

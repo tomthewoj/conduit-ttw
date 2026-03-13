@@ -6,6 +6,7 @@ using Conduit.Application.DTOs.Requests;
 using Conduit.Application.Interfaces;
 using Conduit.Application.Queries.Articles;
 using Conduit.Application.Queries.Comments;
+using Conduit.Application.Queries.Tags;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -35,13 +36,14 @@ namespace Conduit.Controllers
             var response = await _mediator.Send(command);
             return Ok(response);
         }
+        [Authorize]
         [HttpPut("articles/{slug}")]
         public async Task<IActionResult> UpdateArticle([FromBody] UpdateArticleRequest req, string slug)
         {
             var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(userIdString) || !Guid.TryParse(userIdString, out var currentUserId))
                 return Unauthorized();
-            var command = new UpdateArticleCommand(slug,currentUserId, req.Title, req.Description,req.Body);
+            var command = new UpdateArticleCommand(currentUserId, slug, req.Title, req.Description,req.Body);
             var response = await _mediator.Send(command);
             return Ok(response);
         }
@@ -91,7 +93,7 @@ namespace Conduit.Controllers
             var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(userIdString) || !Guid.TryParse(userIdString, out var currentUserId))
                 return Unauthorized();
-            var command = new FavoriteArticleCommand(slug, currentUserId);
+            var command = new FavoriteArticleCommand(currentUserId,slug );
             var response =  await _mediator.Send(command);
             return Ok(response);
         }
@@ -101,7 +103,7 @@ namespace Conduit.Controllers
             var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(userIdString) || !Guid.TryParse(userIdString, out var currentUserId))
                 return Unauthorized();
-            var command = new UnfavoriteArticleCommand(slug, currentUserId);
+            var command = new UnfavoriteArticleCommand(currentUserId,slug );
             var response = await _mediator.Send(command);
             return Ok(response);
         }
@@ -113,7 +115,7 @@ namespace Conduit.Controllers
             var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(userIdString) || !Guid.TryParse(userIdString, out var currentUserId)) return Unauthorized();
 
-            var command = new AddCommentCommand(currentUserId, slug, commentBody);
+            var command = new AddCommentCommand(currentUserId, slug, commentBody);  
             var response = await _mediator.Send(command);
             return Ok(response);
         }
@@ -125,14 +127,22 @@ namespace Conduit.Controllers
             var response = await _mediator.Send(query);
             return Ok(response);
         }
-        [HttpDelete("article/{slug}/comments")]
-        public async Task<IActionResult> DeleteComment(string slug, string commentBody)
+        [Authorize]
+        [HttpDelete("article/{slug}/comments/{commentId}")]
+        public async Task<IActionResult> DeleteComment(string slug, Guid commentId)
         {
             var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(userIdString) || !Guid.TryParse(userIdString, out var currentUserId))
                 return Unauthorized();
-            var command = new DeleteCommentCommand(currentUserId, slug, commentBody);
+            var command = new DeleteCommentCommand(currentUserId, commentId);
             var response = await _mediator.Send(command);
+            return Ok(response);
+        }
+        [HttpGet("tags")]
+        public async Task<IActionResult> GetTags()
+        {
+            var query = new GetAllTagsQuery();
+            var response = await _mediator.Send(query);
             return Ok(response);
         }
     }

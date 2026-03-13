@@ -12,6 +12,7 @@ namespace Conduit.Domain.Interfaces
         Task AddComment(Comment comment);
         Task UpdateComment(Comment comment);
         Task DeleteComment(Guid commentId);
+        Task<Comment?> GetCommentById(Guid commentId);
         Task<IReadOnlyCollection<Comment>> GetAllComments(Guid articleId, int limit, int offset);
     }
 }

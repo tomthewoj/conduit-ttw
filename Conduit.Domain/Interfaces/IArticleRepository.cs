@@ -9,7 +9,7 @@ namespace Conduit.Domain.Interfaces
 {
     public interface IArticleRepository
     {
-        Task CreateArticle(Article article);
+        Task CreateArticle(Article article, IReadOnlyCollection<string> tags);
         Task UpdateArticle(Article article);
         Task DeleteArticle(Guid articleId);
 
@@ -20,9 +20,7 @@ namespace Conduit.Domain.Interfaces
         Task<Article?> GetArticleBySlug(string slug);
         Task<Guid?> GetArticleIdBySlug(string slug);
 
-        Task<IReadOnlyList<Article>> ListArticles(string tag, string author, string favorited, int limit, int offset);
-        Task<IReadOnlyList<Article>> FeedArticles(Guid currentUserId, int limit, int offset);
-
-
+        Task<(IReadOnlyList<Article>,int)> ListArticles(string tag, string author, string favorited, int limit, int offset);
+        Task<(IReadOnlyList<Article>, int)> FeedArticles(Guid currentUserId, int limit, int offset);
     }
 }

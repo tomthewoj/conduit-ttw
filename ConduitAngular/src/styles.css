@@ -1,1 +1,90 @@
-/* You can add global styles to this file, and also import other style files */
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+li {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+/* Make the table a bit more compact and readable */
+table.table {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1);
+}
+
+  /* Hover effect */
+  table.table tbody tr:hover {
+    background-color: #f8f9fa;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  /* Links inside table */
+  table.table a {
+    color: #0d6efd;
+  }
+
+    table.table a:hover {
+      text-decoration: underline;
+    }
+
+/* Limit selector styling */
+select#limit {
+  border-radius: 0.25rem;
+  border: 1px solid #ced4da;
+  padding: 0.25rem 0.5rem;
+}
+
+/* Optional: make current limit text smaller and muted */
+p.text-muted {
+  font-size: 0.9rem;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+}
+table.table tbody tr {
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,0.05);
+}
+.card {
+  border: none; /* no borders for cleaner look */
+  border-radius: 0.75rem; /* rounded corners */
+  background-color: #ffffff; /* white card */
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0.5rem 1.25rem rgba(0,0,0,0.15);
+  }
+
+.card-text {
+  color: #6c757d; /* muted description text */
+  font-size: 0.95rem;
+}
+
+body {
+  background-color: #f8f9fa; /* subtle page background */
+  font-family: 'Inter', sans-serif; /* modern font if you like */
+}
+
+.article-title {
+  text-decoration: none; /* removes underline */
+  color: #212529; /* dark text instead of blue */
+  font-weight: 600; /* semi-bold */
+}
+
+  .article-title:hover {
+    color: #0d6efd; /* subtle hover color */
+    text-decoration: underline; /* optional hover effect */
+    transition: color 0.2s;
+  }
+
+.btn-primary {
+  color: black;
+  background-color: lightgreen;
+}
+.btn-secondary {
+    color: ghostwhite;
+  background-color: darkred;
+}

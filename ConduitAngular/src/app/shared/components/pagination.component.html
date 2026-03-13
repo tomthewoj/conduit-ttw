@@ -1,0 +1,21 @@
+<div class="d-flex justify-content-center align-items-center gap-3 mt-4">
+
+  <!-- Previous -->
+  <button class="btn btn-outline-secondary"
+          (click)="previousPage()"
+          [disabled]="currentPage === 1">
+    ←
+  </button>
+
+  <!-- Page Counter -->
+  <span class="fw-semibold">
+    Page {{ currentPage }} of {{ totalPages }}
+  </span>
+
+  <!-- Next -->
+  <button class="btn btn-outline-secondary"
+          (click)="nextPage()"
+          [disabled]="currentPage === totalPages">
+    →
+  </button>
+</div>

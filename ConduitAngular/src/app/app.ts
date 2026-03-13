@@ -1,16 +1,15 @@
-import { Component, signal } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterOutlet, RouterLink } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.html',
-  standalone: false,
-  styleUrl: './app.css'
+  standalone: true,
+  imports: [RouterOutlet, RouterLink],
+  templateUrl: "./app.html"
 })
 
-export class App {
-  protected readonly title = signal('ConduitAngular');
-  constructor(private router: Router) {
-    console.log('Routes:', this.router.config);
-  }
+export class App
+{
+  constructor(private auth: AuthService) { }
 }

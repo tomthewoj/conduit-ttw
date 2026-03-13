@@ -1,0 +1,27 @@
+<div *ngIf="profile" class="profile-container mx-auto my-4 p-4">
+
+  <h1 class="profile-username mb-3">
+    {{ profile.username }}
+  </h1>
+
+  <img [src]="profile.image" alt="No image" width="64" height="64">
+  <div class="profile-bio text-muted mb-4">
+    {{ profile.bio }}
+  </div>
+  <div class="profile-favorited">
+    <button (click)="toggleFollow()"
+            [class.btn-primary]="!profile.following"
+            [class.btn-secondary]="profile.following">
+
+      {{ profile.following ? 'Unfollow' : 'Follow' }}
+    </button>
+  </div>
+</div>
+
+<h2 class="mb-4" *ngIf="profile">Articles written by {{ profile.username }}</h2>
+<!-- Pagination -->
+<app-articleList [articles]="articles"
+                 [articleCount]="articleCount"
+                 (limitChange)="limitChange($event)"
+                 (pageChange)="pageChange($event)">
+</app-articleList>

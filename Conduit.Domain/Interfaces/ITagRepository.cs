@@ -9,11 +9,12 @@ namespace Conduit.Domain.Interfaces
 {
     public interface ITagRepository
     {
-        Task<ICollection<Tag>> AddAndReturnTags(ICollection<string> tags, CancellationToken ct = default);
+        Task AddTags(Guid articleId, ICollection<string> tags, CancellationToken ct = default);
+        Task RemoveTags(Guid articleId, ICollection<string> tags, CancellationToken ct = default);
         Task<ICollection<string>> GetTagNamesByIds(ICollection<Guid> tags, CancellationToken ct = default);
         Task<IReadOnlyCollection<string>> GetTagsForArticle(Guid articleId);
         Task<IReadOnlyDictionary<Guid, List<string>>> GetTagsForArticles(ICollection<Guid> articleIds);
-        Task AddTag(Guid articleId, string tag);
-        Task RemoveTag(Guid articleId, string tag);
+        Task <ICollection<Tag>> GetAllTags(CancellationToken ct = default);
+
     }
 }

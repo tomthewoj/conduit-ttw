@@ -16,24 +16,7 @@ namespace Conduit.Infra.Data.Repository
         private readonly ConduitDbContext _context;
         public TagRepository(ConduitDbContext context) => _context = context;
 
-        public async Task<ICollection<Tag>> AddAndReturnTags(ICollection<string> tags, CancellationToken ct = default)
-        {
-            var normalizedNames = tags.Select(t => t.Trim().ToLower()).Distinct().ToList();
-            var existingTags = await _context.Tags.Where(t => normalizedNames.Contains(t.Name)).ToListAsync(ct);
-            var existingTagNames = existingTags.Select(t => t.Name); // hashset obczaj aby przyśpieszyć w razie czego
-
-            var missingTags = normalizedNames.Where(name => !existingTagNames.Contains(name)).Select(name => new TagEntity
-            {
-                Id = Guid.NewGuid(),
-                Name = name
-            }).ToList();
-            await _context.Tags.AddRangeAsync(missingTags);
-            await _context.SaveChangesAsync(ct);
-
-            var allTags = existingTags.Concat(missingTags).Select(t => new Tag(t.Id, t.Name)).ToList();
-            return allTags;
-        }
-        public async Task<ICollection<Tag>> GetTags(CancellationToken ct = default)
+        public async Task<ICollection<Tag>> GetAllTags(CancellationToken ct = default)
         {
             return await _context.Tags.Select(t => new Tag(t.Id, t.Name)).ToListAsync();
         }
@@ -62,12 +45,29 @@ namespace Conduit.Infra.Data.Repository
             return result;
         }
 
-        public Task AddTag(Guid articleId, string tag)
+        public async Task AddTags(Guid articleId, ICollection<string> tags, CancellationToken ct = default)
         {
-            throw new NotImplementedException();
+            var normalizedNames = tags.Select(t => t.Trim().ToLower()).Where(t => !string.IsNullOrWhiteSpace(t)).Distinct().ToList();
+            var existingTags = await _context.Tags.Where(t => normalizedNames.Contains(t.Name)).ToListAsync(ct);
+            var existingTagNames = existingTags.Select(t => t.Name).ToHashSet();
+
+            var missingTags = normalizedNames.Where(name => !existingTagNames.Contains(name)).Select(name => new TagEntity{
+                    Id = Guid.NewGuid(),
+                    Name = name
+                }).ToList();
+            await _context.Tags.AddRangeAsync(missingTags, ct);
+
+            var allTags = existingTags.Concat(missingTags).ToList();
+            var existingArticleTagIds = await _context.ArticleTags.Where(at => at.ArticleId == articleId).Select(at => at.TagId).ToHashSetAsync(ct);
+            var articleTags = allTags.Where(t => !existingArticleTagIds.Contains(t.Id)).Select(t => new ArticleTagsEntity{
+                    ArticleId = articleId,
+                    TagId = t.Id
+                });
+            await _context.ArticleTags.AddRangeAsync(articleTags, ct);
+            await _context.SaveChangesAsync(ct);
         }
 
-        public Task RemoveTag(Guid articleId, string tag)
+        public async Task RemoveTags(Guid articleId, ICollection<string> tag, CancellationToken ct)
         {
             throw new NotImplementedException();
         }

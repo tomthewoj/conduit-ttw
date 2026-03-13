@@ -50,7 +50,7 @@ namespace Conduit.Application.Queries.Articles
                 article.Title,
                 article.Description,
                 article.Body,
-                new TagResponse(tags),
+                tags,
                 article.CreatedAt,
                 article.UpdatedAt,
                 isFavoritedByUser,

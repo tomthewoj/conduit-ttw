@@ -11,25 +11,22 @@ namespace Conduit.Application.Commands.Articles.Favorite
 {
     public class FavoriteArticleCommandHandler : IRequestHandler<FavoriteArticleCommand,Unit>
     {
-        public FavoriteArticleCommandHandler(IArticleRepository arepo, IUserRepository urepo)
+        public FavoriteArticleCommandHandler(IArticleRepository articleRepository, IFavoriteRepository favoriteRepository)
         {
-            _urepo = urepo;
-            _arepo = arepo;
+            _articleRepository = articleRepository;
+            _favoriteRepository = favoriteRepository;
         }
-        private IArticleRepository _arepo;
-        private IUserRepository _urepo;
+        private IArticleRepository _articleRepository;
+        private IFavoriteRepository _favoriteRepository;
 
         public async Task<Unit> Handle(FavoriteArticleCommand request, CancellationToken cancellationToken)
         {
-            /*
-            var article = await _arepo.GetArticleBySlug(request.articleSlug);
-            var user = await _urepo.GetUserById((Guid)request.currentUserId);
-            if (article != null)
-            {
-                article.AddFavorite(user);
-                await _arepo.UpdateArticle(article);
-            } //or throw exception
-            */
+            var article = await _articleRepository.GetArticleBySlug(request.slug);
+            if (article == null)
+                throw new Exception("Article not found");
+            if (article.AuthorId == request.currentUserId)
+                throw new UnauthorizedAccessException("Cannot favorite user's own article");
+            await _favoriteRepository.AddFavorite(article.Id, request.currentUserId);
             return Unit.Value;
         }
     }

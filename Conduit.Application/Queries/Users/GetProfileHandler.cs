@@ -15,7 +15,7 @@ namespace Conduit.Application.Queries.Users
         IFollowingRepository _followingRepository;
         public GetProfileHandler(IUserRepository userRepository, IFollowingRepository followingRepository)
         {
-            _followingRepository = followingRepository;
+            _followingRepository = followingRepository; 
             _userRepository = userRepository;
         }
 

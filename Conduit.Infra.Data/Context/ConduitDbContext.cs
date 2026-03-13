@@ -105,7 +105,7 @@ namespace Conduit.Infra.Data.Context
                       .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasOne(af => af.Article)
-                      .WithMany()
+                      .WithMany(a => a.Favorited)
                       .HasForeignKey(af => af.ArticleId)
                       .OnDelete(DeleteBehavior.Cascade);
             });

@@ -43,6 +43,7 @@ namespace Conduit.Application.Queries.Comments
                 bool isFollowing = request.currentUserId != null ? await _followRepo.IsUserFollowing((Guid)request.currentUserId, comment.AuthorId) : false; // can be optimized
                 var commentAuthor = authors[comment.AuthorId];
                 commentList.Add(new CommentResponse(
+                    comment.Id,
                     comment.CreatedAt,
                     comment.UpdatedAt,
                     comment.Body,

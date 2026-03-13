@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 
 namespace Conduit.Application.Commands.Comments
 {
-    public record DeleteCommentCommand(Guid? userId, string slug, string comment) : IRequest<Unit>;
+    public record DeleteCommentCommand(Guid currentUserId,Guid commentId) : IRequest<Unit>;
 }

@@ -1,0 +1,41 @@
+<div class="articleEditor-container" *ngIf="isLoggedIn">
+  <h2>Article Editor</h2>
+
+  <!-- Username Field -->
+  <div class="form-group mb-3">
+    <label for="title">Title</label>
+    <input id="title"
+           class="form-control"
+           [(ngModel)]="title"
+           placeholder="Title"
+           type="text" />
+  </div>
+  <div class="form-group mb-3">
+    <label for="description">Description</label>
+    <input id="description"
+           class="form-control"
+           [(ngModel)]="description"
+           placeholder="Description"
+           type="text" />
+  </div>
+  <div class="form-group mb-3">
+    <label for="body">Body</label>
+    <textarea id="body" class="form-control" rows="10" [(ngModel)]="body" placeholder="Body"></textarea>
+  </div>
+  <div class="form-group mb-3">
+    <label for="tags">Tags</label>
+    <div class="tags-input">
+
+      <span class="tag" *ngFor="let tag of tags">
+        {{ tag }} <button *ngIf="mode === 'create'" type="button" (click)="removeTag(tag)">x</button>
+      </span>
+
+      <input *ngIf="mode === 'create'" id="tags"
+             type="text"
+             placeholder="Add a tag and press Enter"
+             [(ngModel)]="tagInput"
+             (keydown.enter)="addTag()" />
+    </div>
+  </div>
+  <button class="btn btn-primary w-100 mb-3" (click)="submitEdit()">Save</button>
+</div>

@@ -11,22 +11,18 @@ namespace Conduit.Application.Commands.Comments
 {
     public class DeleteCommentCommandHandler : IRequestHandler<DeleteCommentCommand, Unit>
     {
-        IArticleRepository _repo;
-        public DeleteCommentCommandHandler(IArticleRepository articleWriteRepo)
+        ICommentRepository _commentRepository;
+        public DeleteCommentCommandHandler(ICommentRepository commentRepository)
         {
-            _articleWriteRepo = articleWriteRepo;
+            _commentRepository = commentRepository;
         }
-
-        private IArticleRepository _articleWriteRepo;
         public async Task<Unit> Handle(DeleteCommentCommand request, CancellationToken cancellationToken)
         {
-            /*
-            var article = await _repo.GetArticleBySlug(request.slug);
-            var comment = new Comment(request.comment, (Guid)request.userId, article.Id);
-            await _repo.RemoveComment(comment);
-            */
-            return Unit.Value;
-            
+            var commentForDeletion = await _commentRepository.GetCommentById(request.commentId);
+            if (commentForDeletion == null) throw new Exception("Comment doesn't exist");
+            if (commentForDeletion.AuthorId != request.currentUserId) throw new Exception("Comment doesn't belong to the user");
+            await _commentRepository.DeleteComment(request.commentId);
+            return Unit.Value; 
         }
     }
 }

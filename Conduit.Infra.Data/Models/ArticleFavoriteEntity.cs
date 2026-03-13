@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 namespace Conduit.Infra.Data.Models
 {
     public class ArticleFavoriteEntity
-    {
-        public Guid AuthorId { get; set; } // favoriter not author
+    {   
+        public Guid AuthorId { get; set; }
         public Guid ArticleId { get; set; }
         public UserEntity Author { get; set; }
         public ArticleEntity Article { get; set; }

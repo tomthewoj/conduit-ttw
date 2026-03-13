@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Conduit.Infra.Data.Repository
 {
@@ -23,11 +24,30 @@ namespace Conduit.Infra.Data.Repository
             await _context.SaveChangesAsync(ct);
         }
 
-        public async Task CreateArticle(Article article)
+        public async Task CreateArticle(Article article, IReadOnlyCollection<string> tags)
         {
             var articleEntity = await MapArticle(article);
             await _context.Articles.AddAsync(articleEntity);
+            await AddTags(articleEntity, tags);
             await SaveChangesAsync();
+        }
+        private async Task AddTags(ArticleEntity article, IReadOnlyCollection<string> tags)
+        {
+            var normalizedTags = tags.Select(t => t.Trim().ToLower()).Distinct().ToList();
+            var existingTags = await _context.Tags.Where(t => normalizedTags.Contains(t.Name)).ToListAsync();
+            var missingTags = normalizedTags
+                .Except(existingTags.Select(t => t.Name))
+                .Select(name => new TagEntity { Id = Guid.NewGuid(), Name = name })
+                .ToList();
+            await _context.Tags.AddRangeAsync(missingTags);
+
+            var allTags = existingTags.Concat(missingTags).ToList();
+            var articleTags = allTags.Select(t => new ArticleTagsEntity
+            {
+                Article = article,
+                Tag = t
+            });
+            await _context.ArticleTags.AddRangeAsync(articleTags);
         }
         private async Task<ArticleEntity> MapArticle(Article article)
         {
@@ -94,15 +114,11 @@ namespace Conduit.Infra.Data.Repository
             _context.Comments.Remove(commentForDeletion);
             await SaveChangesAsync();
         }
-        public async Task<ICollection<Comment>> GetComments(Article article)
-        {
-            var comments = await _context.Comments.Select(a => new Comment(a.Body,a.AuthorId, article.Id,a.CreatedAt,a.UpdatedAt)).ToListAsync();
-            return comments;
-        }
-        public async Task<IReadOnlyList<Article>> FeedArticles(Guid currentUserId, int limit, int offset)
+        public async Task<(IReadOnlyList<Article>, int)> FeedArticles(Guid currentUserId, int limit, int offset)
         {
             var followeeIds = await _context.UserFollow.Where(f => f.FollowerId == currentUserId).Select(f => f.FolloweeId).ToListAsync();
-            var articles = await _context.Articles.Where(a => followeeIds.Contains(a.AuthorId)).Skip(offset).Take(limit).Select(a => Article.CreateArticle
+            var totalCount = await _context.Articles.Where(a => followeeIds.Contains(a.AuthorId)).CountAsync();
+            var articles = await _context.Articles.Where(a => followeeIds.Contains(a.AuthorId)).OrderByDescending(d => d.CreatedAt).Skip(offset).Take(limit).Select(a => Article.CreateArticle
             (
                 a.Id,
                 a.Slug,
@@ -111,9 +127,10 @@ namespace Conduit.Infra.Data.Repository
                 a.Body,
                 a.AuthorId
              )).ToListAsync();
-            return articles;
+            return (articles, totalCount);
         }
-        public async Task<IReadOnlyList<Article>> ListArticles(string tag, string author, string favorited, int limit, int offset) // limit/offsety do helpera
+
+        public async Task<(IReadOnlyList<Article>,int)> ListArticles(string tag, string author, string favorited, int limit, int offset) // limit/offsety do helpera
         {
             IQueryable<ArticleEntity> query = _context.Articles;
             if (!string.IsNullOrWhiteSpace(author))
@@ -122,12 +139,13 @@ namespace Conduit.Infra.Data.Repository
             }
             if (!string.IsNullOrWhiteSpace(favorited))
             {
-                query = query.Where(f => f.Favorited.Any(a => a.Author.UserName == favorited)); // name is off, unfortunately
+                query = query.Where(f => f.Favorited.Any(a => a.Author.UserName == favorited)); 
             }
             if (!string.IsNullOrWhiteSpace(tag))
             {
                 query = query.Where(a => a.ArticleTags.Any(at => at.Tag.Name == tag));
             }
+            var totalCount = await query.CountAsync();
             var articles = await query.OrderByDescending(a => a.CreatedAt).Skip(offset).Take(limit).Select(a => Article.CreateArticle
             (
                 a.Id,
@@ -137,7 +155,7 @@ namespace Conduit.Infra.Data.Repository
                 a.Body,
                 a.AuthorId
              )).ToListAsync();
-            return articles;
+            return (articles, totalCount);
         }
         public async Task<Article?> GetArticleBySlug(string slug)
         {
@@ -153,9 +171,17 @@ namespace Conduit.Infra.Data.Repository
             return article;
         }
 
-        public Task DeleteArticle(Guid articleId)
+        public async Task DeleteArticle(Guid articleId)
         {
-            throw new NotImplementedException();
+            var article = await _context.Articles
+                            .Include(a => a.ArticleTags)
+                            .FirstOrDefaultAsync(a => a.Id == articleId);
+
+            if (article == null)
+                throw new KeyNotFoundException();
+
+            _context.Articles.Remove(article);
+            await _context.SaveChangesAsync();
         }
 
         public Task DeleteComment(Guid commentId)

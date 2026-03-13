@@ -99,6 +99,7 @@ namespace Conduit.Controllers
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var command = new FollowUserCommand(Guid.Parse(currentUserId), username);
             var response = await _mediator.Send(command);
+            Console.WriteLine("Followed");
             return Ok(response);
         }
         [HttpDelete("profile/{username}/follow")]

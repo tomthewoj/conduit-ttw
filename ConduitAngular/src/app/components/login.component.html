@@ -1,15 +1,44 @@
-<h2>Login</h2>
-<input [(ngModel)]="username" placeholder="Username" />
-<input [(ngModel)]="password" type="password" placeholder="Password" />
-<button (click)="onLogin()">Login</button>
-<p *ngIf="errorMessage" style="color:red">{{ errorMessage }}</p>
-<p *ngIf="successMessage" style="color:green">{{ successMessage }}</p>
+<div class="login-container" *ngIf="!isLoggedIn">
+  <h2>Login</h2>
 
-<hr>
+  <!-- Username Field -->
+  <div class="form-group mb-3">
+    <label for="username">Username</label>
+    <input id="username"
+           class="form-control"
+           [(ngModel)]="username"
+           placeholder="Enter your username"
+           type="text" />
+  </div>
 
-<button (click)="getUsernames()">Get All Usernames</button>
-<button (click)="logout()" style="margin-left: 10px;">Logout</button>
+  <!-- Password Field -->
+  <div class="form-group mb-3">
+    <label for="password">Password</label>
+    <input id="password"
+           class="form-control"
+           [(ngModel)]="password"
+           placeholder="Enter your password"
+           type="password" />
+  </div>
 
-<ul>
-  <li *ngFor="let u of usernames">{{ u }}</li>
-</ul>
+  <!-- Login Button -->
+  <button class="btn btn-primary w-100 mb-3" (click)="onLogin()">Login</button>
+
+  <!-- Messages -->
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+</div>
+
+<!-- Logged-in view -->
+<div *ngIf="isLoggedIn" class="logged-in-container">
+  <h2>Welcome, {{ username }}!</h2>
+  <button class="btn btn-secondary mb-2" (click)="onLogout()">Logout</button>
+
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+</div>

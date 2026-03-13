@@ -1,0 +1,39 @@
+  <!-- Articles Feed -->
+<div class="row row-cols-1 row-cols-md-1 g-4">
+  <div *ngFor="let article of articles" class="col">
+    <div class="card shadow-sm h-100">
+      <div class="card-body">
+
+        <!-- Title -->
+        <h4 class="card-title mb-2">
+          <a [routerLink]="['/articles', article.slug]" class="article-title">
+            {{ article.title }}
+          </a>
+        </h4>
+
+        <!-- Description -->
+        <p class="card-text text-muted">
+          {{ article.description }}
+        </p>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Importing Pagination rn -->
+<app-pagination [currentPage]="currentPage"
+                [totalPages]="totalPages"
+                (pageChange)="loadPage($event)">
+</app-pagination>
+
+<!-- Limit Selector -->
+<div class="mb-4 d-flex align-items-center gap-2">
+  <label for="limit" class="form-label mb-0">Articles per page:</label>
+  <select id="limit" class="form-select w-auto" [(ngModel)]="limit" (ngModelChange)="onLimitChange()">
+    <option [value]="5">5</option>
+    <option [value]="10">10</option>
+    <option [value]="20">20</option>
+    <option [value]="50">50</option>
+  </select>
+
+</div>

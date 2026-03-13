@@ -6,11 +6,12 @@
         string title,
         string description,
         string body,
-        TagResponse tagList,
+        IReadOnlyCollection<string> tagList,
         DateTime createdAt,
         DateTime updatedAt,
         bool favorited,
         int favoritesCount,
         ProfileResponse author
     );
+    //instead of tag response
 }

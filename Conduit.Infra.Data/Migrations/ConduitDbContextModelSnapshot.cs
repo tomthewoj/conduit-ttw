@@ -68,12 +68,7 @@ namespace Conduit.Infra.Data.Migrations
                     b.Property<Guid>("AuthorId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ArticleEntityId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("ArticleId", "AuthorId");
-
-                    b.HasIndex("ArticleEntityId");
 
                     b.HasIndex("AuthorId");
 
@@ -211,12 +206,8 @@ namespace Conduit.Infra.Data.Migrations
 
             modelBuilder.Entity("Conduit.Infra.Data.Models.ArticleFavoriteEntity", b =>
                 {
-                    b.HasOne("Conduit.Infra.Data.Models.ArticleEntity", null)
-                        .WithMany("Favorited")
-                        .HasForeignKey("ArticleEntityId");
-
                     b.HasOne("Conduit.Infra.Data.Models.ArticleEntity", "Article")
-                        .WithMany()
+                        .WithMany("Favorited")
                         .HasForeignKey("ArticleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
