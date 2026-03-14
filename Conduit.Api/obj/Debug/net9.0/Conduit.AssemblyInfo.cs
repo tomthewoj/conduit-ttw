@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Conduit")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+41b9cd44e1919031442d36cb7cda79ed419c492b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5709289de8c9330ffe387d32ada9e8bbacdcc2d7")]
 [assembly: System.Reflection.AssemblyProductAttribute("Conduit")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Conduit")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
