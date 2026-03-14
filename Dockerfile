@@ -26,7 +26,7 @@ RUN dotnet build ./Conduit.Api/Conduit.csproj -c Release -o /app/build
 # ------------------------------
 # Stage 2: Publish for runtime
 # ------------------------------
-FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
 WORKDIR /app
 
 # Copy the build output
