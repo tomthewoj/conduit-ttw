@@ -39,8 +39,8 @@ namespace Conduit.Domain.Entities
 
             Description = description;
             Body = body;
-            CreatedAt = DateTime.Now;
-            UpdatedAt = DateTime.Now;
+            CreatedAt = DateTime.UtcNow;
+            UpdatedAt = DateTime.UtcNow;
             AuthorId = authorId;
         }
         public static Article CreateArticle (Guid? id, string? slug, string title, string description, string body,Guid authorId)
@@ -52,7 +52,7 @@ namespace Conduit.Domain.Entities
             if(title != null) this.Title = title;
             if (description != null) this.Description = description;
             if (body != null) this.Body = body;
-            UpdatedAt = DateTime.Now;
+            UpdatedAt = DateTime.UtcNow;
         }
     }
 }

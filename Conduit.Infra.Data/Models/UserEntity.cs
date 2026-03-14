@@ -14,7 +14,7 @@ namespace Conduit.Infra.Data.Models
         public ICollection<UserFollowEntity> Followers { get; set; }
         public ICollection<UserFollowEntity> Following { get; set; }
         public ICollection<CommentEntity> Comments { get; set; }
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
         public UserProfileEntity Profile { get; set; }
     }
 }

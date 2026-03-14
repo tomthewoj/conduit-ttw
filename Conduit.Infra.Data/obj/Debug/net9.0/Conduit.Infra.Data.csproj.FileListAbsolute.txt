@@ -1,3 +1,9 @@
+E:\MyWork\Programming\2025\repo\Conduit\conduit.infra.data\obj\Debug\net9.0\Conduit.Infra.Data.csproj.AssemblyReference.cache
+E:\MyWork\Programming\2025\repo\Conduit\conduit.infra.data\obj\Debug\net9.0\Conduit.Infra.Data.GeneratedMSBuildEditorConfig.editorconfig
+E:\MyWork\Programming\2025\repo\Conduit\conduit.infra.data\obj\Debug\net9.0\Conduit.Infra.Data.AssemblyInfoInputs.cache
+E:\MyWork\Programming\2025\repo\Conduit\conduit.infra.data\obj\Debug\net9.0\Conduit.Infra.Data.AssemblyInfo.cs
+E:\MyWork\Programming\2025\repo\Conduit\conduit.infra.data\obj\Debug\net9.0\Conduit.Infra.Data.csproj.CoreCompileInputs.cache
+E:\MyWork\Programming\2025\repo\Conduit\conduit.infra.data\obj\Debug\net9.0\Conduit.Infra.Data.sourcelink.json
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Infra.Data\bin\Debug\net9.0\Conduit.Infra.Data.deps.json
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Infra.Data\bin\Debug\net9.0\Conduit.Infra.Data.runtimeconfig.json
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Infra.Data\bin\Debug\net9.0\Conduit.Infra.Data.dll
@@ -8,12 +14,6 @@ E:\MyWork\Programming\2025\repo\Conduit\Conduit.Infra.Data\bin\Debug\net9.0\Cond
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Infra.Data\bin\Debug\net9.0\Conduit.Application.pdb
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Infra.Data\bin\Debug\net9.0\Conduit.Domain.pdb
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Infra.Data\bin\Debug\net9.0\Conduit.Domain.Core.pdb
-E:\MyWork\Programming\2025\repo\Conduit\Conduit.Infra.Data\obj\Debug\net9.0\Conduit.Infra.Data.csproj.AssemblyReference.cache
-E:\MyWork\Programming\2025\repo\Conduit\Conduit.Infra.Data\obj\Debug\net9.0\Conduit.Infra.Data.GeneratedMSBuildEditorConfig.editorconfig
-E:\MyWork\Programming\2025\repo\Conduit\Conduit.Infra.Data\obj\Debug\net9.0\Conduit.Infra.Data.AssemblyInfoInputs.cache
-E:\MyWork\Programming\2025\repo\Conduit\Conduit.Infra.Data\obj\Debug\net9.0\Conduit.Infra.Data.AssemblyInfo.cs
-E:\MyWork\Programming\2025\repo\Conduit\Conduit.Infra.Data\obj\Debug\net9.0\Conduit.Infra.Data.csproj.CoreCompileInputs.cache
-E:\MyWork\Programming\2025\repo\Conduit\Conduit.Infra.Data\obj\Debug\net9.0\Conduit.Infra.Data.sourcelink.json
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Infra.Data\obj\Debug\net9.0\Conduit..C3BE150A.Up2Date
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Infra.Data\obj\Debug\net9.0\Conduit.Infra.Data.dll
 E:\MyWork\Programming\2025\repo\Conduit\Conduit.Infra.Data\obj\Debug\net9.0\refint\Conduit.Infra.Data.dll

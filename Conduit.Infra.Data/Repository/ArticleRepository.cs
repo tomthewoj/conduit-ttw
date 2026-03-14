@@ -57,8 +57,8 @@ namespace Conduit.Infra.Data.Repository
             articleEntity.Body = article.Body;
             articleEntity.Title = article.Title;
             articleEntity.Description = article.Description;
-            articleEntity.CreatedAt = DateTime.Now;
-            articleEntity.UpdatedAt = DateTime.Now;
+            articleEntity.CreatedAt = DateTime.UtcNow;
+            articleEntity.UpdatedAt = DateTime.UtcNow;
             articleEntity.AuthorId = (Guid)article.AuthorId;
             return articleEntity;
         }

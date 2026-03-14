@@ -3,11 +3,7 @@ using Conduit.Domain.Interfaces;
 using Conduit.Infra.Data.Context;
 using Conduit.Infra.Data.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Conduit.Infra.Data.Repository
 {
@@ -58,7 +54,7 @@ namespace Conduit.Infra.Data.Repository
             await _context.Tags.AddRangeAsync(missingTags, ct);
 
             var allTags = existingTags.Concat(missingTags).ToList();
-            var existingArticleTagIds = await _context.ArticleTags.Where(at => at.ArticleId == articleId).Select(at => at.TagId).ToHashSetAsync(ct);
+            var existingArticleTagIds = await _context.ArticleTags.Where(at => at.ArticleId == articleId).Select(at => at.TagId).ToListAsync(ct); //hashset broke
             var articleTags = allTags.Where(t => !existingArticleTagIds.Contains(t.Id)).Select(t => new ArticleTagsEntity{
                     ArticleId = articleId,
                     TagId = t.Id

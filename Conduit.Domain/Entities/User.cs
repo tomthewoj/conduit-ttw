@@ -7,7 +7,7 @@ public class User
     public Guid Id { get; private set; }
     public string UserName { get; private set; }
     public string Email { get; private set; }
-    public DateTime CreatedDate { get; private set; } = DateTime.Now;
+    public DateTime CreatedDate { get; private set; } = DateTime.UtcNow;
     public UserProfile Profile { get; private set; }
     public void UpdateUserName(string userName)
     {

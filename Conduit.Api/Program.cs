@@ -1,7 +1,9 @@
+using Conduit.Infra.Data.Context;
+using Conduit.Infra.IoC;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using Conduit.Infra.IoC;
 using System.Text;
 
 //MAIN THING:
@@ -17,13 +19,26 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 
+var provider = config["DatabaseProvider"];
+
+builder.Services.AddDbContext<ConduitDbContext>(options =>
+{
+    if (provider == "Postgres")
+    {
+        options.UseNpgsql(config.GetConnectionString("Postgres"), b => b.MigrationsAssembly("Conduit.Infra.Data"));
+    }
+    else if (provider == "SqlServer")
+    {
+        options.UseSqlServer(config.GetConnectionString("SqlServer"), b => b.MigrationsAssembly("Conduit.Infra.Data"));
+    }
+});
 builder.Services.AddUsersModule(builder.Configuration);
 builder.Services.AddControllers();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngularDev",
-        builder => builder
-            .WithOrigins("https://localhost:50557")
+        policy => policy 
+            .SetIsOriginAllowed(origin => origin.StartsWith("https://localhost"))
             .AllowAnyHeader()
             .AllowAnyMethod());
 });
@@ -75,10 +90,22 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
+var port = Environment.GetEnvironmentVariable("PORT") ?? "7255";
 
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(7255, listenOptions => listenOptions.UseHttps());//  options.ListenAnyIP(int.Parse(port));
+});
 
 var app = builder.Build();
 
+/*
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ConduitDbContext>();
+    db.Database.Migrate();
+}
+*/
 
 app.UseCors("AllowAngularDev");
 app.UseHttpsRedirection();
