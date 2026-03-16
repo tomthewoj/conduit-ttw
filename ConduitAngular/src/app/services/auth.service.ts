@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { loginResponse } from '../models/loginResponse';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'https://localhost:7255/api/users';
+  private apiUrl = `${environment.apiBaseUrl}/users`;
   private loggedIn; //make this observable for reuse
   isLoggedIn$;
   constructor(private http: HttpClient)

@@ -49,7 +49,7 @@
 
         <p class="card-author text-muted">
           <img [src]="comment.author.image" alt="No image" width="32" height="32">
-          <a [routerLink]="['/profile', comment.author.username]">{{ comment.author.username }}</a>&nbsp;
+          <a [routerLink]="['/prore', comment.author.username]">{{ comment.author.username }}</a>&nbsp;
           <button class="btn btn-secondary" *ngIf="comment.author.username === currentUser" (click)="deleteComment(comment.id)">Delete comment</button>
         </p>
 

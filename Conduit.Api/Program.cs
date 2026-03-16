@@ -121,6 +121,8 @@ if (app.Environment.IsDevelopment())
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseDefaultFiles(); //for frontend
+app.UseStaticFiles(); //for frontend
 app.MapControllers();
 
 app.Run();

@@ -3,15 +3,16 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ArticleFeed } from '../models/articleFeed';
 import { ArticleEdit } from '../models/articleEdit';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArticleService {
-  private articlesUrl = 'https://localhost:7255/api/articles';
-  private articleUrl = 'https://localhost:7255/api/article'
-  private feedUrl = 'https://localhost:7255/api/articles/feed';
-  private tagsUrl = 'https://localhost:7255/api/tags'
+  private articlesUrl = `${environment.apiBaseUrl}/articles`;
+  private articleUrl = `${environment.apiBaseUrl}/article`
+  private feedUrl = `${environment.apiBaseUrl}/articles/feed`;
+  private tagsUrl = `${environment.apiBaseUrl}/tags`;
 
   constructor(private http: HttpClient) { }
 
