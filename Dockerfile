@@ -12,7 +12,7 @@ RUN npm install
 COPY ConduitAngular/ ./
 
 # Build Angular for production
-RUN npm run build --configuration production
+RUN ng build ConduitAngular --configuration production
 
 # ------------------------------
 # Stage 2: Build .NET backend
