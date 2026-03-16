@@ -91,10 +91,12 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 var port = Environment.GetEnvironmentVariable("PORT") ?? "7255";
+var useHttps = string.IsNullOrEmpty(Environment.GetEnvironmentVariable("PORT")); //only dev has this
 
 builder.WebHost.ConfigureKestrel(options =>
 {
-    options.ListenAnyIP(7255, listenOptions => listenOptions.UseHttps());//  options.ListenAnyIP(int.Parse(port));
+    if (useHttps) options.ListenAnyIP(int.Parse(port), listenOptions => listenOptions.UseHttps());
+    else options.ListenAnyIP(int.Parse(port));
 });
 
 var app = builder.Build();
