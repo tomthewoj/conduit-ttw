@@ -26,6 +26,7 @@ namespace Conduit.Controllers
             _mediator = mediator;
             _tokenService = tokenService;
         }
+        [Authorize]
         [HttpPost("articles")]
         public async Task<IActionResult> CreateArticle([FromBody] CreateArticleDto dto)
         {
@@ -66,6 +67,7 @@ namespace Conduit.Controllers
             return Ok(response);
         }
 
+        [Authorize]
         [HttpDelete("articles/{slug}")]
         public async Task<IActionResult> DeleteArticle(string slug)
         {
@@ -87,6 +89,7 @@ namespace Conduit.Controllers
             return Ok(response);
         }
 
+        [Authorize]
         [HttpPost("articles/{slug}/favorite")]
         public async Task<IActionResult> FavoriteArticle(string slug)
         {
@@ -97,6 +100,7 @@ namespace Conduit.Controllers
             var response =  await _mediator.Send(command);
             return Ok(response);
         }
+        [Authorize]
         [HttpDelete("articles/{slug}/favorite")]
         public async Task<IActionResult> UnfavoriteArticle(string slug)
         {

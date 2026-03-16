@@ -24,7 +24,7 @@
     </a>
   </div>
 
-  <div *ngIf="isAuthor" class="article-favorited">
+  <div *ngIf="isLoggedIn" class="article-favorited">
     <button (click)="toggleFavorite()"
             [class.btn-primary]="!article.favorited"
             [class.btn-secondary]="article.favorited">

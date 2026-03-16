@@ -1,7 +1,7 @@
 # ------------------------------
 # Stage 1: Build the backend
 # ------------------------------
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 
 # Set working directory inside container
 WORKDIR /app
@@ -26,7 +26,7 @@ RUN dotnet build ./Conduit.Api/Conduit.csproj -c Release -o /app/build
 # ------------------------------
 # Stage 2: Publish for runtime
 # ------------------------------
-FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
 WORKDIR /app
 

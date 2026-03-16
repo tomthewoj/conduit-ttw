@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Conduit.Infra.IoC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+74e94479a259e00a60fe9d82813a3b239d9431e5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5551fc63807e1cf026aff982a9487767f37f7563")]
 [assembly: System.Reflection.AssemblyProductAttribute("Conduit.Infra.IoC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Conduit.Infra.IoC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
