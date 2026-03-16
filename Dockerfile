@@ -2,7 +2,7 @@
 # Stage 1: Build Angular frontend
 # ------------------------------
 FROM node:22 AS angular-build
-WORKDIR /ConduitAngular
+WORKDIR /frontend
 
 # Copy package.json and install dependencies
 COPY ConduitAngular/package*.json ./
@@ -11,16 +11,16 @@ RUN npm install
 # Copy all Angular source code
 COPY ConduitAngular/ ./
 
-# Build Angular for production using npx
-RUN npx ng build ConduitAngular --configuration production
+# Build Angular for production
+RUN npx ng build --configuration production
 
 # ------------------------------
 # Stage 2: Build .NET backend
 # ------------------------------
-FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS backend-build
 WORKDIR /app
 
-# Copy csproj files first (for caching restore)
+# Copy all csproj files first (caching restore)
 COPY Conduit.Api/*.csproj ./Conduit.Api/
 COPY Conduit.Application/*.csproj ./Conduit.Application/
 COPY Conduit.Domain/*.csproj ./Conduit.Domain/
@@ -34,23 +34,24 @@ RUN dotnet restore ./Conduit.Api/Conduit.csproj
 # Copy all source code
 COPY . ./
 
-# Publish backend
+# Publish backend to /app/publish
 RUN dotnet publish ./Conduit.Api/Conduit.csproj -c Release -o /app/publish
 
+# Copy Angular build output into backend wwwroot
+# This ensures ASP.NET Core serves Angular files automatically
+COPY --from=angular-build /frontend/dist/ConduitAngular/browser/ /app/publish/wwwroot/
+
 # ------------------------------
-# Stage 3: Runtime
+# Stage 3: Runtime container
 # ------------------------------
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
 
-# Copy backend publish output
-COPY --from=build /app/publish ./
-
-# Copy Angular build output into wwwroot
-COPY --from=angular-build /ConduitAngular/dist/ConduitAngular/browser/ ./wwwroot/
+# Copy published backend + Angular files
+COPY --from=backend-build /app/publish ./
 
 # Expose port
 EXPOSE 5000
 
-# Run backend
+# Run backend (DLL will exist because we published)
 ENTRYPOINT ["dotnet", "Conduit.Api.dll"]
