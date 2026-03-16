@@ -54,4 +54,4 @@ COPY --from=backend-build /app/publish ./
 EXPOSE 5000
 
 # Run backend (DLL will exist because we published)
-ENTRYPOINT ["dotnet", "Conduit.Api.dll"]
+ENTRYPOINT ["dotnet", "Conduit.dll"]
